@@ -51,6 +51,9 @@ with open(csv_file, mode='a', newline='') as f:
                 flat_landmarks = []
                 for lm in hand_landmarks.landmark:
                     flat_landmarks.extend([lm.x, lm.y, lm.z])
+                wrist = hand_landmarks.landmark[0]
+                flat_landmarks = [(lm.x - wrist.x, lm.y - wrist.y, lm.z - wrist.z) for lm in hand_landmarks.landmark]
+                flat_landmarks = [coord for lm in flat_landmarks for coord in lm]  # flatten
                 # Wait for user input to label
                 key = cv2.waitKey(1) & 0xFF
                 if key in GESTURE_KEYS:
