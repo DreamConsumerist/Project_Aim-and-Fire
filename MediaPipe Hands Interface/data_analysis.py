@@ -5,14 +5,12 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 
-df = pd.read_csv("hand_gestures_augmented.csv", header=None)
-print(df[0].value_counts())
-
+df = pd.read_csv("hand_gestures.csv", header=None)
 # Shuffle the rows
 df = df.sample(frac=1, random_state=42).reset_index(drop=True)
 
 # Optional: save back to CSV
-df.to_csv("hand_gestures_augmented_shuffled.csv", index=False, header=False)
+df.to_csv("hand_gestures_shuffled.csv", index=False, header=False)
 
 X = df.iloc[:, 1:].to_numpy(dtype=np.float32)
 labels = df.iloc[:, 0].to_numpy()
