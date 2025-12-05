@@ -20,8 +20,7 @@ public class DataConsumer : MonoBehaviour
             // We are on the main thread now. We can safely update game state.
             Debug.Log("Consumer Script processing new data: " + newMessage);
 
-            // Example: Parse data and update a local variable
-            // Assume the message is just a number string, e.g., "15.4"
+            // Parse structure: 
             if (float.TryParse(newMessage, out float value))
             {
                 // Update a local variable
