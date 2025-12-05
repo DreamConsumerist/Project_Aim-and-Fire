@@ -3,6 +3,8 @@ using UnityEngine;
 public class DataConsumer : MonoBehaviour
 {
     public UDP_Reception udpReceiver; // Drag the GameObject with UDP_Reception script onto this field in the Inspector
+    public CrosshairController crosshairController;
+    public string[] parser;
 
     void Update()
     {
@@ -20,13 +22,8 @@ public class DataConsumer : MonoBehaviour
             // We are on the main thread now. We can safely update game state.
             Debug.Log("Consumer Script processing new data: " + newMessage);
 
-            // Parse structure: 
-            if (float.TryParse(newMessage, out float value))
-            {
-                // Update a local variable
-                float speed = value;
-                Debug.Log("Updated local speed variable to: " + speed);
-            }
+            parser = newMessage.Split(',');
+            ReceptionEvents.MessageReceived(float.Parse(parser[0]), float.Parse(parser[1]));
         }
     }
 }
