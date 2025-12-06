@@ -1,3 +1,5 @@
+import sys
+print(sys.executable)
 import socket
 import random
 import cv2
@@ -5,6 +7,9 @@ import mediapipe as mp
 
 UDP_IP = "127.0.0.1"
 UDP_PORT = 5555
+
+print("hello world")
+cap = cv2.VideoCapture(0)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # Initialize MediaPipe Hands
@@ -17,8 +22,6 @@ hands = mp_hands.Hands(
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5
 )
-
-cap = cv2.VideoCapture(0)
 
 while cap.isOpened():
     ret, frame = cap.read()
