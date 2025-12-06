@@ -17,7 +17,6 @@ hands = mp_hands.Hands(
 )
 
 while cap.isOpened():
-    print("Printing to unity?")
     ret, frame = cap.read()
     if not ret:
         break

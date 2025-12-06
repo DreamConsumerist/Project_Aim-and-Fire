@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 public class PythonProcessManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class PythonProcessManager : MonoBehaviour
     Process pythonProcess;
     public string pythonPath; // assign in inspector
     public string scriptPath;    // assign in inspector
+    string[] parser;
     void Start()
     {
         StartPython();
@@ -46,8 +48,10 @@ public class PythonProcessManager : MonoBehaviour
 
     private void OnPythonOutput(object sender, DataReceivedEventArgs e)
     {
-        if (!string.IsNullOrEmpty(e.Data))
-            Debug.Log("[Python] " + e.Data);
+        if (string.IsNullOrEmpty(e.Data))
+            return;
+
+        Debug.Log("[Python] " + e.Data);
     }
 
     private void OnPythonError(object sender, DataReceivedEventArgs e)

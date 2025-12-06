@@ -44,8 +44,6 @@ while cap.isOpened():
     if message != "":
         encoded_message = message.encode('utf-8')
         sock.sendto(encoded_message, (UDP_IP, UDP_PORT))
-        print(f"UDP message sent to {UDP_IP}:{UDP_PORT}")
-        print(f"Message: {message}")
     if cv2.waitKey(1) & 0xFF == 27:  # ESC to quit
         break
 sock.close()
