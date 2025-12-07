@@ -9,7 +9,10 @@ UDP_IP = "127.0.0.1"
 UDP_PORT = 5555
 
 print("hello world")
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
+cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)  # turn off auto exposure
+cap.set(cv2.CAP_PROP_FPS, 60)             # lock frame rate
+cap.set(cv2.CAP_PROP_BRIGHTNESS, 128)     # fixed brightness
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # Initialize MediaPipe Hands
