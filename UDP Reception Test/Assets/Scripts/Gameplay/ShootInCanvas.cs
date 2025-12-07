@@ -3,8 +3,11 @@ using UnityEngine.InputSystem;
 
 public class ShootInCanvas : MonoBehaviour
 {
+    [HideInInspector]
     public Camera cam;
     public GameObject projectilePrefab;
+    public RectTransform crosshair;
+    public Vector3 crosshairOffset = new Vector3(0,20,0);
     public Vector3 muzzlePos;
 
     private void Start()
@@ -22,8 +25,7 @@ public class ShootInCanvas : MonoBehaviour
 
     private void Shoot()
     {
-        Vector2 mousePos = Mouse.current.position.ReadValue(); //new Vector3(Screen.width / 2, Screen.height / 2)
-        Ray ray = cam.ScreenPointToRay(mousePos);
+        Ray ray = cam.ScreenPointToRay(crosshair.position + crosshairOffset);
 
         Vector3 targetPoint;
 
@@ -41,3 +43,5 @@ public class ShootInCanvas : MonoBehaviour
         Instantiate(projectilePrefab, muzzlePos, Quaternion.LookRotation(dir));
     }
 }
+
+//Vector2 mousePos = Mouse.current.position.ReadValue(); //new Vector3(Screen.width / 2, Screen.height / 2)

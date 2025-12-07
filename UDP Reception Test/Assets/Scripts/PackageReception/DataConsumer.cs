@@ -4,6 +4,7 @@ public class DataConsumer : MonoBehaviour
 {
     public UDP_Reception udpReceiver; // Drag the GameObject with UDP_Reception script onto this field in the Inspector
     public CrosshairController crosshairController;
+    [HideInInspector]
     public string[] parser;
 
     void Update()

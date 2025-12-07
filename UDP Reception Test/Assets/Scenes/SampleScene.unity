@@ -497,6 +497,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3482423334651263974, guid: 60798134f91b55142b1cbcc5ba32b559, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1859988457}
+    - target: {fileID: 3482423334651263974, guid: 60798134f91b55142b1cbcc5ba32b559, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 2785288200221944675, guid: ef0e4c848ec216b4587bf62f2d17f6e6, type: 3}
@@ -1412,9 +1416,10 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1916398071}
+  - {fileID: 350498864}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 1916398071}
   - {fileID: 1203590611}
   - {fileID: 1714349253}
   - {fileID: 894545522}
@@ -1424,4 +1429,3 @@ SceneRoots:
   - {fileID: 1765537775}
   - {fileID: 412660848}
   - {fileID: 1780975714}
-  - {fileID: 350498864}
