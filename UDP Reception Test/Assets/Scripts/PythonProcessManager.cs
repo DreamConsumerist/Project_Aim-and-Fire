@@ -39,11 +39,7 @@ public class PythonProcessManager : MonoBehaviour
 
     void OnDisable()
     {
-        if (pythonProcess != null)
-        {
-            pythonProcess.OutputDataReceived -= OnPythonOutput;
-            pythonProcess.ErrorDataReceived -= OnPythonError;
-        }
+        CleanupPython();
     }
 
     private void OnPythonOutput(object sender, DataReceivedEventArgs e)
@@ -69,10 +65,16 @@ public class PythonProcessManager : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        CleanupPython();
+    }
+    void CleanupPython()
+    {
         if (pythonProcess != null && !pythonProcess.HasExited)
         {
             pythonProcess.Kill();
+            pythonProcess.WaitForExit(); // ensures it actually terminates
             pythonProcess.Dispose();
+            pythonProcess = null;
         }
     }
 }

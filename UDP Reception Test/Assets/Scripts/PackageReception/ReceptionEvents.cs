@@ -3,10 +3,10 @@ using UnityEngine;
 
 public static class ReceptionEvents
 {
-    public static Action<float, float> OnMessageReceived;
+    public static Action<float, float, float, float> OnMessageReceived;
 
-    public static void MessageReceived(float fingerX, float fingerY)
+    public static void MessageReceived(float wristX, float wristY, float indexX, float indexY)
     {
-        OnMessageReceived?.Invoke(fingerX, fingerY);
+        OnMessageReceived?.Invoke(wristX, wristY, indexX, indexY);
     }
 }

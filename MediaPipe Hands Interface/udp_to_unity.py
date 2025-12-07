@@ -1,9 +1,19 @@
 import sys
 print(sys.executable)
 import socket
-import random
 import cv2
 import mediapipe as mp
+import math
+import numpy as np
+
+def normalize(v):
+    norm = np.linalg.norm(v)
+    if norm == 0:
+        return v
+    return v / norm
+
+def to_vec(a, b):
+    return (b.x - a.x, b.y - a.y, b.z - a.z)
 
 UDP_IP = "127.0.0.1"
 UDP_PORT = 5555
@@ -42,7 +52,21 @@ while cap.isOpened():
         for hand_landmarks in result.multi_hand_landmarks:
             # Draw landmarks
             mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
-        message = f"{hand_landmarks.landmark[8].x},{hand_landmarks.landmark[8].y}"
+
+        # Pointing direction
+        indexMCP = hand_landmarks.landmark[5]
+        indexPIP = hand_landmarks.landmark[6]
+        indexDIP = hand_landmarks.landmark[7]
+        indexTIP = hand_landmarks.landmark[8]
+        wrist = hand_landmarks.landmark[0]
+        v1 = to_vec(indexMCP, indexPIP)
+        v2 = to_vec(indexPIP, indexDIP)
+        v3 = to_vec(indexDIP, indexTIP)
+        combined = (v1[0] + v2[0] + v3[0], v1[1] + v2[1] + v3[1], v1[2] + v2[2] + v3[2])
+        direction = normalize(combined)
+
+        message = f"{wrist.x},{wrist.y},{indexTIP.x},{indexTIP.y}"
+
     cv2.imshow("Hand Classification", frame)
     if message != "":
         encoded_message = message.encode('utf-8')
