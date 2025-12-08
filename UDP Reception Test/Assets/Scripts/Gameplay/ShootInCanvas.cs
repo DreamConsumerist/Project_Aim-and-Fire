@@ -15,13 +15,6 @@ public class ShootInCanvas : MonoBehaviour
         cam = Camera.main;
         muzzlePos = cam.transform.position + new Vector3(0, 0, .5f);
     }
-    private void Update()
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Shoot();
-        }
-    }
 
     public void Shoot()
     {
@@ -45,3 +38,11 @@ public class ShootInCanvas : MonoBehaviour
 }
 
 //Vector2 mousePos = Mouse.current.position.ReadValue(); //new Vector3(Screen.width / 2, Screen.height / 2)
+
+//private void Update()
+//{
+//    if (Mouse.current.leftButton.wasPressedThisFrame)
+//    {
+//        Shoot();
+//    }
+//}

@@ -551,7 +551,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8372365385235661399, guid: 60798134f91b55142b1cbcc5ba32b559, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1555139971}
   m_SourcePrefab: {fileID: 100100000, guid: 60798134f91b55142b1cbcc5ba32b559, type: 3}
 --- !u!1 &742241462
 GameObject:
@@ -713,6 +716,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833747351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8194370537936353312, guid: 792f04a1cce2e9345a3d4d8f0067a9a4, type: 3}
+  m_PrefabInstance: {fileID: 1780975714}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8d26eb3a87d9d499d4f521a9a5a842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrosshairController
 --- !u!1 &894545518
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +950,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1555139965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8372365385235661399, guid: 60798134f91b55142b1cbcc5ba32b559, type: 3}
+  m_PrefabInstance: {fileID: 740634192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555139966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3482423334651263974, guid: 60798134f91b55142b1cbcc5ba32b559, type: 3}
+  m_PrefabInstance: {fileID: 740634192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555139965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2dc8c6cf54b0514d945de74d250a065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootInCanvas
+--- !u!114 &1555139971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555139965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d83aa1a6e3e0f459a98e015f512921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateManager
+  currState: 
+  crosshair: {fileID: 833747351}
+  gun: {fileID: 1555139966}
 --- !u!1 &1714349249
 GameObject:
   m_ObjectHideFlags: 0

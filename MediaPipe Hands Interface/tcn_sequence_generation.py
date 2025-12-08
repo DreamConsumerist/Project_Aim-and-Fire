@@ -4,10 +4,10 @@ import json
 SEQUENCE_LENGTH = 10  # target length
 
 # --- Load data ---
-with open("dynamic_gestures.json", "r") as f:
+with open("Old TCN Files/dynamic_gestures.json", "r") as f:
     fire_sequences = json.load(f)
 
-with open("static_gestures.json", "r") as f:
+with open("Old TCN Files/static_gestures.json", "r") as f:
     static_frames = json.load(f)
 
 # --- Process fire sequences ---
@@ -38,8 +38,8 @@ for label in labels:
 print(f"Static sequences after splitting: {len(processed_static)}")
 
 # --- Save processed data ---
-with open("dynamic_sequences_10.json", "w") as f:
+with open("Old TCN Files/dynamic_sequences_10.json", "w") as f:
     json.dump(processed_fire, f)
 
-with open("static_sequences_10.json", "w") as f:
+with open("Old TCN Files/static_sequences_10.json", "w") as f:
     json.dump(processed_static, f)

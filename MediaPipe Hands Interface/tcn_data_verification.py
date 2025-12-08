@@ -2,7 +2,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-with open("hand_data.json") as f:
+with open("Old TCN Files/hand_data.json") as f:
     data = json.load(f)
 
 # Step through each frame

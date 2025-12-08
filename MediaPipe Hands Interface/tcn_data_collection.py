@@ -8,8 +8,8 @@ import os
 import gc
 
 # --- Load previous data if it exists ---
-static_sequences_file = "static_gestures.json"
-dynamic_sequences_file = "dynamic_gestures.json"
+static_sequences_file = "Old TCN Files/static_gestures.json"
+dynamic_sequences_file = "Old TCN Files/dynamic_gestures.json"
 
 if os.path.exists(static_sequences_file):
     with open(static_sequences_file, "r") as f:
@@ -151,9 +151,9 @@ cv2.destroyAllWindows()
 listener.stop()
 
 # --- Save data ---
-with open("static_gestures.json", "w") as f:
+with open("Old TCN Files/static_gestures.json", "w") as f:
     json.dump(static_sequences, f)
 
-with open("dynamic_gestures.json", "w") as f:
+with open("Old TCN Files/dynamic_gestures.json", "w") as f:
     json.dump(dynamic_sequences, f)
 gc.collect()

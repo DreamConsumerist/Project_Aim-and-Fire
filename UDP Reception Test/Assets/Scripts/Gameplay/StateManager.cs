@@ -14,7 +14,7 @@ public class StateManager : MonoBehaviour
 
     void UpdateState(string state, float wx, float wy, float ix, float iy)
     {
-        Debug.Log(state);
+        currState = state;
         if ((currState == ("Idle")) || (currState == "None"))
         {
             crosshair.UpdateCrosshair(wx, wy, ix, iy);
