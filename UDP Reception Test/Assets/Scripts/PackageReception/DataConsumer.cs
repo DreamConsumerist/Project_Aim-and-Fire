@@ -24,7 +24,7 @@ public class DataConsumer : MonoBehaviour
             Debug.Log("Consumer Script processing new data: " + newMessage);
 
             parser = newMessage.Split(',');
-            ReceptionEvents.MessageReceived(float.Parse(parser[0]), float.Parse(parser[1]), float.Parse(parser[2]), float.Parse(parser[3]));
+            ReceptionEvents.MessageReceived(parser[0], float.Parse(parser[1]), float.Parse(parser[2]), float.Parse(parser[3]), float.Parse(parser[4]));
         }
     }
 }

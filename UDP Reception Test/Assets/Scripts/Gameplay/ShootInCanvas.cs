@@ -23,7 +23,7 @@ public class ShootInCanvas : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         Ray ray = cam.ScreenPointToRay(crosshair.position + crosshairOffset);
 

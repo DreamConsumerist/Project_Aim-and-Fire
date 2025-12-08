@@ -1,7 +1,7 @@
 import numpy as np
 import json
 
-SEQUENCE_LENGTH = 30  # target length
+SEQUENCE_LENGTH = 10  # target length
 
 # --- Load data ---
 with open("dynamic_gestures.json", "r") as f:
@@ -38,8 +38,8 @@ for label in labels:
 print(f"Static sequences after splitting: {len(processed_static)}")
 
 # --- Save processed data ---
-with open("dynamic_sequences_30.json", "w") as f:
+with open("dynamic_sequences_10.json", "w") as f:
     json.dump(processed_fire, f)
 
-with open("static_sequences_30.json", "w") as f:
+with open("static_sequences_10.json", "w") as f:
     json.dump(processed_static, f)
