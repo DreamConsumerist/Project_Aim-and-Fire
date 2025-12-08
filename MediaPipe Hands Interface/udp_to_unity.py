@@ -99,10 +99,6 @@ while cap.isOpened():
                 pred_label = label_map[majority_class]
                 cv2.putText(frame, f"Predicted: {pred_label}", (10, 60),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-        else:
-            seq_buffer.clear()
-            pred_buffer.clear()  # clear smoothing when hand lost
-
         # Pointing direction
         indexMCP = hand_landmarks.landmark[5]
         indexPIP = hand_landmarks.landmark[6]
@@ -116,6 +112,10 @@ while cap.isOpened():
         direction = normalize(combined)
 
         message = f"{pred_label},{wrist.x},{wrist.y},{indexTIP.x},{indexTIP.y}"
+    else:
+        print("clearing")
+        seq_buffer.clear()
+        pred_buffer.clear()  # clear smoothing when hand lost
 
     cv2.imshow("Hand Classification", frame)
     if message != "":
