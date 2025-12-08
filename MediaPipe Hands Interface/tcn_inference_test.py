@@ -24,7 +24,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 num_features = 63
 num_classes = 3
 model = TCNGestureClassifier(num_features=num_features, num_classes=num_classes)
-model.load_state_dict(torch.load("Old TCN Files/tcn_gesture_model_best.pth", map_location=device))
+model.load_state_dict(torch.load("tcn_gesture_model_best.pth", map_location=device))
 model.to(device)
 model.eval()
 

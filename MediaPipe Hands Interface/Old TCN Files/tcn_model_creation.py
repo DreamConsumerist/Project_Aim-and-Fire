@@ -153,5 +153,5 @@ if __name__ == "main":
         # --- Save best model ---
         if overall_acc > best_val_acc:
             best_val_acc = overall_acc
-            torch.save(model.state_dict(), "tcn_gesture_model_best.pth")
+            torch.save(model.state_dict(), "../tcn_gesture_model_best.pth")
             print(f"Best model saved at epoch {epoch + 1} with val accuracy {best_val_acc:.4f}")

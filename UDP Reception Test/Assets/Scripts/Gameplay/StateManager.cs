@@ -2,33 +2,37 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    public string currState;
+    public string prevState;
     public CrosshairController crosshair;
     public ShootInCanvas gun;
 
     void Start()
     {
         ReceptionEvents.OnMessageReceived += UpdateState;
-        currState = "Idle";
+        prevState = "Idle";
     }
 
     void UpdateState(string state, float wx, float wy, float ix, float iy)
     {
-        currState = state;
-        if ((currState == ("Idle")) || (currState == "None"))
+        if ((state == ("Idle")) || (state == "None"))
         {
-            crosshair.UpdateCrosshair(wx, wy, ix, iy);
+            crosshair.gameObject.SetActive(false);
             return;
         }
-        if (currState == "Aim")
+        if (state == "Aim")
         {
-            crosshair.UpdateCrosshair(wx, wy, ix, iy);
+            crosshair.gameObject.SetActive(true);
         }
-        if (currState == "Fire")
+        if ((state == "Fire") && (prevState != "Fire"))
         {
-            crosshair.UpdateCrosshair(wx, wy, ix, iy);
+            crosshair.gameObject.SetActive(true);
             gun.Shoot();
         }
+        if (crosshair.gameObject.activeSelf)
+        {
+            crosshair.UpdateCrosshair(wx, wy, ix, iy); // Maybe make a LockCrosshair(time t) for firing so that the crosshair's not thrown off
+        }
+        prevState = state;
     }
 
     private void OnDisable()
