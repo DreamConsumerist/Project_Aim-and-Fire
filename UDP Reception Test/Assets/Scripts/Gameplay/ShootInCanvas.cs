@@ -14,9 +14,10 @@ public class ShootInCanvas : MonoBehaviour
     {
         cam = Camera.main;
         muzzlePos = cam.transform.position + new Vector3(0, 0, .5f);
+        GunEvents.OnGunFired += Shoot;
     }
 
-    public void Shoot()
+    public void Shoot(Vector2 crosshairPos)
     {
         Ray ray = cam.ScreenPointToRay(crosshair.position + crosshairOffset);
 
@@ -34,6 +35,11 @@ public class ShootInCanvas : MonoBehaviour
         Vector3 dir = (targetPoint - muzzlePos).normalized;
 
         Instantiate(projectilePrefab, muzzlePos, Quaternion.LookRotation(dir));
+    }
+
+    private void OnDisable()
+    {
+        GunEvents.OnGunFired -= Shoot;
     }
 }
 

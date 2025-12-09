@@ -20,7 +20,7 @@ public class DataConsumer : MonoBehaviour
         if (newMessage != null)
         {
             // We are on the main thread now. We can safely update game state.
-            Debug.Log("Consumer Script processing new data: " + newMessage);
+            //Debug.Log("Consumer Script processing new data: " + newMessage);
 
             parser = newMessage.Split(',');
             ReceptionEvents.MessageReceived(parser[0], float.Parse(parser[1]), float.Parse(parser[2]), float.Parse(parser[3]), float.Parse(parser[4]));

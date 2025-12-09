@@ -30,29 +30,25 @@ public class GunStateManager : MonoBehaviour
 
     void UpdateState(string state, float wx, float wy, float ix, float iy)
     {
-        //Debug.Log("Updating state!");
         if (crosshairController == null)
         {
             crosshairController = FindAnyObjectByType<CrosshairController>();
         }
         if ((state == ("Idle")) || (state == "None"))
         {
-            //crosshairController.gameObject.SetActive(false);
-            //return;
+            crosshairController.gameObject.SetActive(false);
+            return;
         }
         if (state == "Aim")
         {
             crosshairController.gameObject.SetActive(true);
-            //crosshairController.UpdateCrosshair(wx, wy, ix, iy);
+            crosshairController.UpdateCrosshair(wx, wy, ix, iy);
         }
         if ((state == "Fire") && (prevState != "Fire"))
         {
             crosshairController.gameObject.SetActive(true);
-            //crosshairController.UpdateCrosshair(wx, wy, ix, iy);
             GunEvents.GunFired(crosshairController.crosshair.position);
         }
-        crosshairController.gameObject.SetActive(true);
-        crosshairController.UpdateCrosshair(wx, wy, ix, iy);
         prevState = state;
     }
 
