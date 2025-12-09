@@ -1,0 +1,63 @@
+using UnityEngine;
+
+public class GunStateManager : MonoBehaviour
+{
+    public static GunStateManager Instance;
+    
+    public string prevState;
+    [HideInInspector]
+    public CrosshairController crosshairController;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        crosshairController = FindAnyObjectByType<CrosshairController>();
+        ReceptionEvents.OnMessageReceived += UpdateState;
+        prevState = "Idle";
+    }
+
+    void UpdateState(string state, float wx, float wy, float ix, float iy)
+    {
+        //Debug.Log("Updating state!");
+        if (crosshairController == null)
+        {
+            crosshairController = FindAnyObjectByType<CrosshairController>();
+        }
+        if ((state == ("Idle")) || (state == "None"))
+        {
+            //crosshairController.gameObject.SetActive(false);
+            //return;
+        }
+        if (state == "Aim")
+        {
+            crosshairController.gameObject.SetActive(true);
+            //crosshairController.UpdateCrosshair(wx, wy, ix, iy);
+        }
+        if ((state == "Fire") && (prevState != "Fire"))
+        {
+            crosshairController.gameObject.SetActive(true);
+            //crosshairController.UpdateCrosshair(wx, wy, ix, iy);
+            GunEvents.GunFired(crosshairController.crosshair.position);
+        }
+        crosshairController.gameObject.SetActive(true);
+        crosshairController.UpdateCrosshair(wx, wy, ix, iy);
+        prevState = state;
+    }
+
+    private void OnDisable()
+    {
+        ReceptionEvents.OnMessageReceived -= UpdateState;
+    }
+}

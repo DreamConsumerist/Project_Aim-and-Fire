@@ -74,7 +74,7 @@ while cap.isOpened():
         break
     pred_label = "None"
     # Flip frame for mirror view
-    frame = cv2.flip(frame, 1)
+    #frame = cv2.flip(frame, 1)
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
     # Process the frame

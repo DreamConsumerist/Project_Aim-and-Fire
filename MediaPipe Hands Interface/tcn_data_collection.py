@@ -7,21 +7,16 @@ from pynput import keyboard
 import os
 import gc
 
-# --- Load previous data if it exists ---
-static_sequences_file = "Old TCN Files/static_gestures.json"
-dynamic_sequences_file = "Old TCN Files/dynamic_gestures.json"
+data_file = "gestures.npz"
 
-if os.path.exists(static_sequences_file):
-    with open(static_sequences_file, "r") as f:
-        static_sequences = json.load(f)
-else:
-    static_sequences = []
+static_sequences = []
+dynamic_sequences = []
 
-if os.path.exists(dynamic_sequences_file):
-    with open(dynamic_sequences_file, "r") as f:
-        dynamic_sequences = json.load(f)
-else:
-    dynamic_sequences = []
+# Load existing NPZ file if present
+if os.path.exists(data_file):
+    loaded = np.load(data_file, allow_pickle=True)
+    static_sequences = loaded["static"].tolist()
+    dynamic_sequences = loaded["dynamic"].tolist()
 
 # --- Setup ---
 mp_hands = mp.solutions.hands
@@ -99,7 +94,7 @@ while cap.isOpened():
     if not ret:
         break
 
-    frame = cv2.flip(frame, 1)
+    #frame = cv2.flip(frame, 1)
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     result = hands.process(rgb_frame)
 
@@ -150,10 +145,12 @@ cap.release()
 cv2.destroyAllWindows()
 listener.stop()
 
-# --- Save data ---
-with open("Old TCN Files/static_gestures.json", "w") as f:
-    json.dump(static_sequences, f)
+# Convert lists to numpy arrays for saving
+static_arr = np.array(static_sequences, dtype=object)
+dynamic_arr = np.array(dynamic_sequences, dtype=object)
 
-with open("Old TCN Files/dynamic_gestures.json", "w") as f:
-    json.dump(dynamic_sequences, f)
-gc.collect()
+np.savez_compressed(
+    data_file,
+    static=static_arr,
+    dynamic=dynamic_arr
+)

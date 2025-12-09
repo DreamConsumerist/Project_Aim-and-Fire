@@ -5,13 +5,25 @@ using System.IO;
 using Debug = UnityEngine.Debug;
 public class PythonProcessManager : MonoBehaviour
 {
+    public static PythonProcessManager Instance;
+    
     Process pythonProcess;
     public string pythonPath; // assign in inspector
     public string scriptPath;    // assign in inspector
     string[] parser;
-    void Start()
+
+    void Awake()
     {
-        StartPython();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            StartPython(); // start immediately in Awake
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void StartPython()

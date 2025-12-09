@@ -27,6 +27,11 @@ public class CrosshairController : MonoBehaviour
         }
 
         smoothedCrosshair = Vector2.Lerp(smoothedCrosshair, aimPos, 0.2f);
+        if (crosshair == null)
+        {
+            CrosshairController controller = FindAnyObjectByType<CrosshairController>();
+            crosshair = controller.crosshair;
+        }
         crosshair.position = smoothedCrosshair;
 
         Debug.DrawLine(new Vector3(wristScreen.x, wristScreen.y, 0), new Vector3(aimPos.x, aimPos.y, 0), Color.red);
