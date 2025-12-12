@@ -20,6 +20,7 @@ cap = cv2.VideoCapture(1)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(script_dir, "tcn_gesture_model_best.pth")
 
+# Look into using NPU if possible, optimized for AI inference
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 num_features = 63
 num_classes = 3

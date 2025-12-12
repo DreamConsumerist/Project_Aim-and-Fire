@@ -36,8 +36,9 @@ public class GunStateManager : MonoBehaviour
         }
         if ((state == ("Idle")) || (state == "None"))
         {
-            crosshairController.gameObject.SetActive(false);
-            return;
+            //crosshairController.gameObject.SetActive(false);
+            //return;
+            crosshairController.UpdateCrosshair(wx, wy, ix, iy);
         }
         if (state == "Aim")
         {
