@@ -14,4 +14,4 @@ In order to use MediaPipe Hands, you have to have a camera. For MediaPipe Hands 
 4. Unity parses the data into game variables to calculate aim trajectory and control the current game state.
 
 ## Current Status
-Developing in a mad dash to submit on time in 3 days... I will update with gameplay if I get it done in time.
+On hold for the time being as I adjust to working life, I plan on returning to make the training data more robust. Though it currently is well-trained, it is well-trained specifically to my hand, making this inflexible at the moment as a generic control scheme. Additionally, I would like to add gameplay functionality, a level or two. Still planning on adding gameplay footage, I will do that soonish.
